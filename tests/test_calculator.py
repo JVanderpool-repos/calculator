@@ -110,13 +110,13 @@ class TestCalculator:
         """Test logarithm with invalid input raises ValueError."""
         with pytest.raises(ValueError):
             self.calc.logarithm(0)  # Log of zero
-        
+
         with pytest.raises(ValueError):
             self.calc.logarithm(-1)  # Log of negative number
-        
+
         with pytest.raises(ValueError):
             self.calc.logarithm(10, 1)  # Base cannot be 1
-        
+
         with pytest.raises(ValueError):
             self.calc.logarithm(10, -1)  # Base cannot be negative
 
@@ -130,7 +130,7 @@ class TestCalculator:
     def test_sine_radians(self):
         """Test sine function with radians."""
         assert self.calc.sine(0, degrees=False) == pytest.approx(0.0)
-        assert self.calc.sine(math.pi/2, degrees=False) == pytest.approx(1.0)
+        assert self.calc.sine(math.pi / 2, degrees=False) == pytest.approx(1.0)
         assert self.calc.sine(math.pi, degrees=False) == pytest.approx(0.0)
 
     def test_cosine(self):
@@ -143,7 +143,7 @@ class TestCalculator:
     def test_cosine_radians(self):
         """Test cosine function with radians."""
         assert self.calc.cosine(0, degrees=False) == pytest.approx(1.0)
-        assert self.calc.cosine(math.pi/2, degrees=False) == pytest.approx(0.0)
+        assert self.calc.cosine(math.pi / 2, degrees=False) == pytest.approx(0.0)
         assert self.calc.cosine(math.pi, degrees=False) == pytest.approx(-1.0)
 
     def test_tangent(self):
@@ -155,14 +155,14 @@ class TestCalculator:
     def test_tangent_radians(self):
         """Test tangent function with radians."""
         assert self.calc.tangent(0, degrees=False) == pytest.approx(0.0)
-        assert self.calc.tangent(math.pi/4, degrees=False) == pytest.approx(1.0)
+        assert self.calc.tangent(math.pi / 4, degrees=False) == pytest.approx(1.0)
         assert self.calc.tangent(math.pi, degrees=False) == pytest.approx(0.0)
 
     def test_history_tracking(self):
         """Test that operations are tracked in history."""
         self.calc.add(2, 3)
         self.calc.multiply(4, 5)
-        
+
         history = self.calc.get_history()
         assert len(history) == 2
         assert "2 + 3 = 5" in history[0]
@@ -172,7 +172,7 @@ class TestCalculator:
         """Test that last result is tracked correctly."""
         result = self.calc.add(10, 5)
         assert self.calc.get_last_result() == result == 15
-        
+
         result = self.calc.multiply(3, 7)
         assert self.calc.get_last_result() == result == 21
 
@@ -180,9 +180,9 @@ class TestCalculator:
         """Test clearing calculation history."""
         self.calc.add(1, 1)
         self.calc.subtract(5, 3)
-        
+
         assert len(self.calc.get_history()) == 2
-        
+
         self.calc.clear_history()
         assert len(self.calc.get_history()) == 0
 
@@ -191,7 +191,7 @@ class TestCalculator:
         self.calc.add(1, 1)
         history = self.calc.get_history()
         history.append("fake entry")
-        
+
         # Original history should be unchanged
         assert len(self.calc.get_history()) == 1
         assert "fake entry" not in self.calc.get_history()
@@ -236,7 +236,7 @@ class TestEdgeCases:
 
     def test_very_small_numbers(self):
         """Test operations with very small numbers."""
-        small_num = 10**(-100)
+        small_num = 10 ** (-100)
         result = self.calc.add(small_num, small_num)
         assert result == 2 * small_num
 

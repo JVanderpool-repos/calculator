@@ -13,7 +13,7 @@ from calculator import Calculator
 
 class CalculatorCLI:
     """Command-line interface for the calculator."""
-    
+
     def __init__(self):
         """Initialize the CLI calculator."""
         self.calculator = Calculator()
@@ -71,101 +71,113 @@ class CalculatorCLI:
     def parse_expression(self, expression: str) -> str:
         """
         Parse and evaluate mathematical expressions.
-        
+
         Args:
             expression: The mathematical expression to evaluate
-            
+
         Returns:
             String representation of the result
         """
         expression = expression.strip().lower()
-        
+
         try:
             # Handle special commands
-            if expression in ['quit', 'exit']:
+            if expression in ["quit", "exit"]:
                 self.running = False
                 return "👋 Goodbye!"
-            
-            elif expression == 'help':
+
+            elif expression == "help":
                 self.display_help()
                 return ""
-            
-            elif expression == 'history':
+
+            elif expression == "history":
                 history = self.calculator.get_history()
                 if not history:
                     return "📜 No calculations in history"
-                return "📜 History:\n" + "\n".join(f"  {i+1}. {calc}" for i, calc in enumerate(history[-10:]))
-            
-            elif expression == 'clear':
+                return "📜 History:\n" + "\n".join(
+                    f"  {i+1}. {calc}" for i, calc in enumerate(history[-10:])
+                )
+
+            elif expression == "clear":
                 self.calculator.clear_history()
                 return "🗑️  History cleared"
-            
-            elif expression == 'last':
+
+            elif expression == "last":
                 return f"🔢 Last result: {self.calculator.get_last_result()}"
-            
+
             # Handle percentage expressions (e.g., "20% of 150")
-            percentage_match = re.match(r'(\d+(?:\.\d+)?)%\s+of\s+(\d+(?:\.\d+)?)', expression)
+            percentage_match = re.match(
+                r"(\d+(?:\.\d+)?)%\s+of\s+(\d+(?:\.\d+)?)", expression
+            )
             if percentage_match:
-                percent, number = float(percentage_match.group(1)), float(percentage_match.group(2))
+                percent, number = float(percentage_match.group(1)), float(
+                    percentage_match.group(2)
+                )
                 result = self.calculator.percentage(number, percent)
                 return f"✅ {percent}% of {number} = {result}"
-            
+
             # Handle factorial expressions (e.g., "5!")
-            factorial_match = re.match(r'(\d+)!', expression)
+            factorial_match = re.match(r"(\d+)!", expression)
             if factorial_match:
                 number = int(factorial_match.group(1))
                 result = self.calculator.factorial(number)
                 return f"✅ {number}! = {result}"
-            
+
             # Handle square root expressions (e.g., "sqrt(25)")
-            sqrt_match = re.match(r'sqrt\((\d+(?:\.\d+)?)\)', expression)
+            sqrt_match = re.match(r"sqrt\((\d+(?:\.\d+)?)\)", expression)
             if sqrt_match:
                 number = float(sqrt_match.group(1))
                 result = self.calculator.square_root(number)
                 return f"✅ √{number} = {result}"
-            
+
             # Handle logarithm expressions (e.g., "log(100, 10)" or "ln(2.718)")
-            log_match = re.match(r'log\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\)', expression)
+            log_match = re.match(
+                r"log\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\)", expression
+            )
             if log_match:
                 number, base = float(log_match.group(1)), float(log_match.group(2))
                 result = self.calculator.logarithm(number, base)
                 return f"✅ log₍{base}₎({number}) = {result}"
-            
-            ln_match = re.match(r'ln\((\d+(?:\.\d+)?)\)', expression)
+
+            ln_match = re.match(r"ln\((\d+(?:\.\d+)?)\)", expression)
             if ln_match:
                 number = float(ln_match.group(1))
                 result = self.calculator.logarithm(number)
                 return f"✅ ln({number}) = {result}"
-            
+
             # Handle trigonometric functions
-            trig_match = re.match(r'(sin|cos|tan)\((\d+(?:\.\d+)?)\)', expression)
+            trig_match = re.match(r"(sin|cos|tan)\((\d+(?:\.\d+)?)\)", expression)
             if trig_match:
                 func_name, angle = trig_match.group(1), float(trig_match.group(2))
-                if func_name == 'sin':
+                if func_name == "sin":
                     result = self.calculator.sine(angle)
-                elif func_name == 'cos':
+                elif func_name == "cos":
                     result = self.calculator.cosine(angle)
                 else:  # tan
                     result = self.calculator.tangent(angle)
                 return f"✅ {func_name}({angle}°) = {result}"
-            
+
             # Handle basic arithmetic expressions
             # Replace ** with power function for better tracking
-            if '**' in expression:
-                power_match = re.match(r'(\d+(?:\.\d+)?)\s*\*\*\s*(\d+(?:\.\d+)?)', expression)
+            if "**" in expression:
+                power_match = re.match(
+                    r"(\d+(?:\.\d+)?)\s*\*\*\s*(\d+(?:\.\d+)?)", expression
+                )
                 if power_match:
-                    base, exponent = float(power_match.group(1)), float(power_match.group(2))
+                    base, exponent = float(power_match.group(1)), float(
+                        power_match.group(2)
+                    )
                     result = self.calculator.power(base, exponent)
                     return f"✅ {base}^{exponent} = {result}"
-            
+
             # Handle basic operations
             operators = {
-                '+': self.calculator.add,
-                '-': self.calculator.subtract,
-                '*': self.calculator.multiply,
-                '/': self.calculator.divide
+                "+": self.calculator.add,
+                "-": self.calculator.subtract,
+                "*": self.calculator.multiply,
+                "/": self.calculator.divide,
             }
-            
+
             for op_symbol, op_func in operators.items():
                 if op_symbol in expression:
                     parts = expression.split(op_symbol)
@@ -176,7 +188,7 @@ class CalculatorCLI:
                             return f"✅ {a} {op_symbol} {b} = {result}"
                         except ValueError:
                             continue
-            
+
             # If no pattern matched, try to evaluate as Python expression (with caution)
             # This is a fallback for complex expressions
             try:
@@ -185,9 +197,9 @@ class CalculatorCLI:
                     return f"✅ {expression} = {result}"
             except:
                 pass
-            
+
             return "❌ Invalid expression. Type 'help' for usage examples."
-        
+
         except ZeroDivisionError:
             return "❌ Error: Cannot divide by zero"
         except ValueError as e:
@@ -198,18 +210,18 @@ class CalculatorCLI:
     def run_interactive(self):
         """Run the calculator in interactive mode."""
         self.display_welcome()
-        
+
         while self.running:
             try:
                 user_input = input("🧮 calc> ").strip()
-                
+
                 if not user_input:
                     continue
-                
+
                 result = self.parse_expression(user_input)
                 if result:
                     print(result)
-                    
+
             except KeyboardInterrupt:
                 print("\n👋 Goodbye!")
                 break
@@ -220,7 +232,7 @@ class CalculatorCLI:
     def run_single_command(self, expression: str):
         """
         Run a single calculation and exit.
-        
+
         Args:
             expression: The mathematical expression to evaluate
         """
@@ -232,7 +244,7 @@ class CalculatorCLI:
 def main():
     """Main entry point for the calculator CLI."""
     cli = CalculatorCLI()
-    
+
     if len(sys.argv) > 1:
         # Run single command mode
         expression = " ".join(sys.argv[1:])

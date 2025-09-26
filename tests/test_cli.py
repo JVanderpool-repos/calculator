@@ -50,7 +50,7 @@ class TestCalculatorCLI:
         """Test parsing of logarithm expressions."""
         result = self.cli.parse_expression("log(100, 10)")
         assert "✅ log₍10.0₎(100.0) = 2.0" in result
-        
+
         result = self.cli.parse_expression("ln(2.718)")
         assert "ln(2.718)" in result
 
@@ -58,10 +58,10 @@ class TestCalculatorCLI:
         """Test parsing of trigonometric expressions."""
         result = self.cli.parse_expression("sin(90)")
         assert "sin(90.0°)" in result and "1.0" in result
-        
+
         result = self.cli.parse_expression("cos(0)")
         assert "cos(0.0°)" in result and "1.0" in result
-        
+
         result = self.cli.parse_expression("tan(45)")
         assert "tan(45.0°)" in result
 
@@ -71,24 +71,24 @@ class TestCalculatorCLI:
         result = self.cli.parse_expression("quit")
         assert "👋 Goodbye!" in result
         assert not self.cli.running
-        
+
         # Reset for other tests
         self.cli.running = True
-        
+
         # Test exit command
         result = self.cli.parse_expression("exit")
         assert "👋 Goodbye!" in result
         assert not self.cli.running
-        
+
         # Reset for other tests
         self.cli.running = True
-        
+
         # Test clear command
         self.cli.calculator.add(1, 1)  # Add something to history
         result = self.cli.parse_expression("clear")
         assert "🗑️  History cleared" in result
         assert len(self.cli.calculator.get_history()) == 0
-        
+
         # Test last command
         self.cli.calculator.add(5, 5)
         result = self.cli.parse_expression("last")
@@ -99,11 +99,11 @@ class TestCalculatorCLI:
         # Empty history
         result = self.cli.parse_expression("history")
         assert "📜 No calculations in history" in result
-        
+
         # Add some calculations
         self.cli.calculator.add(1, 2)
         self.cli.calculator.multiply(3, 4)
-        
+
         result = self.cli.parse_expression("history")
         assert "📜 History:" in result
         assert "1 + 2 = 3" in result
@@ -114,11 +114,11 @@ class TestCalculatorCLI:
         # Division by zero
         result = self.cli.parse_expression("5 / 0")
         assert "❌ Error: Cannot divide by zero" in result
-        
+
         # Invalid expression
         result = self.cli.parse_expression("invalid expression")
         assert "❌ Invalid expression" in result
-        
+
         # Square root of negative number
         result = self.cli.parse_expression("sqrt(-1)")
         assert "❌ Invalid expression" in result
@@ -136,20 +136,20 @@ class TestCalculatorCLI:
         result = self.cli.parse_expression("  2   +   3  ")
         assert "✅ 2.0 + 3.0 = 5.0" in result
 
-    @patch('builtins.input', side_effect=['2 + 3', 'quit'])
-    @patch('sys.stdout', new_callable=StringIO)
+    @patch("builtins.input", side_effect=["2 + 3", "quit"])
+    @patch("sys.stdout", new_callable=StringIO)
     def test_interactive_mode_basic(self, mock_stdout, mock_input):
         """Test basic interactive mode functionality."""
         # Override the display_welcome method to avoid printing during tests
-        with patch.object(self.cli, 'display_welcome'):
+        with patch.object(self.cli, "display_welcome"):
             self.cli.run_interactive()
-        
+
         output = mock_stdout.getvalue()
         assert "✅ 2.0 + 3.0 = 5.0" in output or "2.0 + 3.0 = 5.0" in str(mock_stdout)
 
     def test_single_command_mode(self):
         """Test single command mode."""
-        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
             self.cli.run_single_command("2 + 3")
             output = mock_stdout.getvalue()
             assert "✅ 2.0 + 3.0 = 5.0" in output
@@ -183,13 +183,13 @@ class TestCLIEdgeCases:
 
     def test_help_command_output(self):
         """Test that help command produces output."""
-        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
             result = self.cli.parse_expression("help")
             self.cli.display_help()
-            
+
             # The result should be empty (help prints directly)
             assert result == ""
-            
+
             # But stdout should contain help information
             output = mock_stdout.getvalue()
             assert "CALCULATOR HELP" in output
