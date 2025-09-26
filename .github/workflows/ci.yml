@@ -1,5 +1,6 @@
 name: Python Calculator CI
 
+# Workflow updated to fix linting and testing issues
 on:
   push:
     branches: [ main, develop ]
