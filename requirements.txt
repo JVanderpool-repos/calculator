@@ -1,5 +1,9 @@
 # Python Calculator Requirements
 # 
+# ⚠️  AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
+# This file is generated from .devcontainer/versions.py
+# To update versions, edit versions.py and run: python .devcontainer/generate-configs.py
+# 
 # Production dependencies
 setuptools>=65.0.0
 wheel>=0.37.0

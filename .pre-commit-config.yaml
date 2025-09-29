@@ -1,6 +1,12 @@
 # Pre-commit hooks for code quality
 # Install with: pre-commit install
 # Run on all files: pre-commit run --all-files
+# 
+# ⚠️  AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
+# This file is generated from .devcontainer/versions.py
+# To update versions, edit versions.py and run: python .devcontainer/generate-configs.py
+# 
+# Versions are managed centrally in .devcontainer/versions.py
 
 repos:
   # Code formatting

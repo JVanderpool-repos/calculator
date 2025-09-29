@@ -44,7 +44,7 @@
 		}
 	},
 
-	"postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && pip install -r .devcontainer/requirements-dev.txt",
+	"postCreateCommand": "bash .devcontainer/setup.sh",
 	
 	"forwardPorts": [],
 	
