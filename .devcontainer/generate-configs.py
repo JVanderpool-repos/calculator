@@ -151,29 +151,31 @@ def main():
     """Generate all configuration files from the central version source."""
     project_root = Path(__file__).parent.parent
     devcontainer_dir = Path(__file__).parent
-    
+
     print("🔧 Generating configuration files from centralized versions...")
-    
+
     # Generate requirements.txt
     requirements_path = project_root / "requirements.txt"
     print(f"📝 Generating {requirements_path}")
     with open(requirements_path, "w", encoding="utf-8") as f:
         f.write(generate_requirements_txt())
-    
+
     # Generate requirements-dev.txt
     requirements_dev_path = devcontainer_dir / "requirements-dev.txt"
     print(f"📝 Generating {requirements_dev_path}")
     with open(requirements_dev_path, "w", encoding="utf-8") as f:
         f.write(generate_requirements_dev_txt())
-    
+
     # Generate .pre-commit-config.yaml
     precommit_path = project_root / ".pre-commit-config.yaml"
     print(f"📝 Generating {precommit_path}")
     with open(precommit_path, "w", encoding="utf-8") as f:
         f.write(generate_precommit_config())
-    
+
     print("✅ All configuration files generated successfully!")
-    print("💡 To update versions, edit .devcontainer/versions.py and run this script again")
+    print(
+        "💡 To update versions, edit .devcontainer/versions.py and run this script again"
+    )
 
 
 if __name__ == "__main__":

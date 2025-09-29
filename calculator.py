@@ -6,7 +6,7 @@ Includes error handling and support for various mathematical operations.
 """
 
 import math
-from typing import Union, List
+from typing import List, Union
 
 
 class Calculator:

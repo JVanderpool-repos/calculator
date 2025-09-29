@@ -3,11 +3,13 @@
 Calculator CLI Application
 
 A command-line interface for the Python calculator with interactive mode
-and direct calculation support.
+and direct calculation support. Also supports GUI mode.
 """
 
-import sys
+import argparse
 import re
+import sys
+
 from calculator import Calculator
 
 
@@ -130,12 +132,14 @@ class CalculatorCLI:
                 result = self.calculator.square_root(number)
                 return f"✅ √{number} = {result}"
 
-            # Handle logarithm expressions (e.g., "log(100, 10)" or "ln(2.718)")
+            # Handle logarithm expressions
+            # (e.g., "log(100, 10)" or "ln(2.718)")
             log_match = re.match(
                 r"log\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\)", expression
             )
             if log_match:
-                number, base = float(log_match.group(1)), float(log_match.group(2))
+                number = float(log_match.group(1))
+                base = float(log_match.group(2))
                 result = self.calculator.logarithm(number, base)
                 return f"✅ log₍{base}₎({number}) = {result}"
 
@@ -148,7 +152,8 @@ class CalculatorCLI:
             # Handle trigonometric functions
             trig_match = re.match(r"(sin|cos|tan)\((\d+(?:\.\d+)?)\)", expression)
             if trig_match:
-                func_name, angle = trig_match.group(1), float(trig_match.group(2))
+                func_name = trig_match.group(1)
+                angle = float(trig_match.group(2))
                 if func_name == "sin":
                     result = self.calculator.sine(angle)
                 elif func_name == "cos":
@@ -183,19 +188,20 @@ class CalculatorCLI:
                     parts = expression.split(op_symbol)
                     if len(parts) == 2:
                         try:
-                            a, b = float(parts[0].strip()), float(parts[1].strip())
+                            a = float(parts[0].strip())
+                            b = float(parts[1].strip())
                             result = op_func(a, b)
                             return f"✅ {a} {op_symbol} {b} = {result}"
                         except ValueError:
                             continue
 
-            # If no pattern matched, try to evaluate as Python expression (with caution)
-            # This is a fallback for complex expressions
+            # If no pattern matched, try to evaluate as Python expression
+            # (with caution)
             try:
                 result = eval(expression, {"__builtins__": {}}, {})
                 if isinstance(result, (int, float)):
                     return f"✅ {expression} = {result}"
-            except:
+            except (SyntaxError, NameError, TypeError, ValueError):
                 pass
 
             return "❌ Invalid expression. Type 'help' for usage examples."
@@ -242,16 +248,51 @@ class CalculatorCLI:
 
 
 def main():
-    """Main entry point for the calculator CLI."""
-    cli = CalculatorCLI()
+    """Main entry point for the calculator application."""
+    parser = argparse.ArgumentParser(
+        description="Python Calculator - CLI and GUI modes",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""Examples:
+  calculator                    # Start interactive CLI
+  calculator "2 + 3"             # Calculate expression directly
+  calculator --gui              # Launch GUI mode
+  calculator --gui "sin(90)"     # GUI mode with initial expression""",
+    )
 
-    if len(sys.argv) > 1:
-        # Run single command mode
-        expression = " ".join(sys.argv[1:])
-        cli.run_single_command(expression)
+    parser.add_argument(
+        "--gui", action="store_true", help="Launch calculator in GUI mode"
+    )
+
+    parser.add_argument(
+        "expression", nargs="*", help="Mathematical expression to evaluate"
+    )
+
+    args = parser.parse_args()
+
+    if args.gui:
+        # Launch GUI mode
+        try:
+            from calculator_gui import main as gui_main
+
+            gui_main()
+        except ImportError:
+            print("❌ Error: GUI components not available.")
+            print("Please ensure tkinter is installed.")
+            sys.exit(1)
+        except Exception as e:
+            print(f"❌ Error launching GUI: {e}")
+            sys.exit(1)
     else:
-        # Run interactive mode
-        cli.run_interactive()
+        # CLI mode
+        cli = CalculatorCLI()
+
+        if args.expression:
+            # Run single command mode
+            expression = " ".join(args.expression)
+            cli.run_single_command(expression)
+        else:
+            # Run interactive mode
+            cli.run_interactive()
 
 
 if __name__ == "__main__":
