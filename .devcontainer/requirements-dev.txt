@@ -11,10 +11,10 @@ pytest-cov>=4.0.0
 pytest-xdist>=3.0.0  # Parallel test execution
 
 # Code quality and formatting
-black>=22.0.0
-flake8>=5.0.0
+black==23.12.1  # Match pre-commit hook version
+flake8==7.0.0  # Match pre-commit hook version
 mypy>=0.990
-isort>=5.10.0  # Import sorting
+isort==5.13.2  # Match pre-commit hook version
 pylint>=2.15.0  # Additional linting
 
 # Documentation
@@ -25,7 +25,7 @@ sphinx-rtd-theme>=1.0.0
 ipython>=8.0.0  # Enhanced Python REPL
 jupyter>=1.0.0  # Notebook support
 pre-commit>=2.20.0  # Git hooks for code quality
-bandit>=1.7.0  # Security linting
+bandit==1.7.5  # Match pre-commit hook version
 
 # Debugging and profiling
 pdbpp>=0.10.0  # Enhanced debugger (pdb++)
