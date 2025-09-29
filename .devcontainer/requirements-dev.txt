@@ -28,6 +28,6 @@ pre-commit>=2.20.0  # Git hooks for code quality
 bandit>=1.7.0  # Security linting
 
 # Debugging and profiling
-pdb++>=0.10.0  # Enhanced debugger
+pdbpp>=0.10.0  # Enhanced debugger (pdb++)
 memory-profiler>=0.60.0  # Memory profiling
 line-profiler>=4.0.0  # Line-by-line profiling
