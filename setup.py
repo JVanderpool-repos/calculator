@@ -2,8 +2,6 @@
 Setup configuration for the Python Calculator package.
 """
 
-import os
-
 from setuptools import find_packages, setup
 
 
