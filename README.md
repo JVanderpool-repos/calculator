@@ -1,10 +1,11 @@
 # 🧮 Python Calculator
 
-A comprehensive Python calculator with both a command-line interface and modular API. Features basic arithmetic operations, advanced mathematical functions, trigonometry, and calculation history tracking.
+A comprehensive Python calculator with both **command-line interface** and **graphical user interface**. Features basic arithmetic operations, advanced mathematical functions, trigonometry, and calculation history tracking.
 
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+![GUI](https://img.shields.io/badge/GUI-tkinter-orange.svg)
 
 ## ✨ Features
 
@@ -30,7 +31,9 @@ A comprehensive Python calculator with both a command-line interface and modular
 - **Calculation History**: Track and display previous calculations
 - **Error Handling**: Robust error handling with helpful messages
 - **Interactive CLI**: User-friendly command-line interface
+- **Graphical GUI**: Modern tkinter-based graphical interface
 - **Batch Mode**: Execute single calculations from command line
+- **Keyboard Support**: Full keyboard navigation in GUI mode
 - **Modular API**: Use calculator functions in your own Python code
 
 ## 🚀 Quick Start
@@ -91,7 +94,34 @@ A comprehensive Python calculator with both a command-line interface and modular
 
 ## 💻 Usage
 
-### Interactive Mode
+The calculator supports three modes: **Interactive CLI**, **Batch Mode**, and **Graphical GUI**.
+
+### 🖼️ Graphical User Interface (GUI)
+
+Launch the modern graphical interface with:
+
+```bash
+python main.py --gui
+```
+
+The GUI features:
+- **Visual calculator layout** with buttons for all operations
+- **Keyboard support** for quick input (numbers, operators, Enter for equals)
+- **History window** accessible via the "📜 History" button
+- **Error dialogs** with helpful messages
+- **Scientific functions** including trigonometry, factorial, square root
+- **Memory operations** and calculation chaining
+- **Responsive design** that works well in dev containers
+
+**Keyboard Shortcuts in GUI:**
+- `0-9`: Numbers
+- `+`, `-`, `*`, `/`: Basic operations  
+- `Enter` or `=`: Calculate result
+- `Backspace`: Delete last digit
+- `Escape`: Clear all
+- `Delete`: Clear entry
+
+### 🖥️ Interactive CLI Mode
 
 Run the calculator without arguments to start interactive mode:
 
@@ -134,7 +164,7 @@ Enter calculations (e.g., '2 + 3', 'sqrt(16)', 'sin(90)'):
   3. sin(90.0°) = 1.0
 ```
 
-### Batch Mode
+### ⚡ Batch Mode
 
 Execute single calculations directly from the command line:
 
@@ -147,6 +177,34 @@ python main.py "sqrt(16)"
 
 python main.py "20% of 150"
 # Output: ✅ 20.0% of 150.0 = 30.0
+```
+
+### 📖 Command Line Help
+
+View all available options and examples:
+
+```bash
+python main.py --help
+```
+
+Output:
+```
+usage: main.py [-h] [--gui] [expression ...]
+
+Python Calculator - CLI and GUI modes
+
+positional arguments:
+  expression  Mathematical expression to evaluate
+
+options:
+  -h, --help  show this help message and exit
+  --gui       Launch calculator in GUI mode
+
+Examples:
+  calculator                    # Start interactive CLI
+  calculator "2 + 3"             # Calculate expression directly
+  calculator --gui              # Launch GUI mode
+  calculator --gui "sin(90)"     # GUI mode with initial expression
 ```
 
 ### API Usage

@@ -5,9 +5,11 @@ This module contains comprehensive tests for all calculator operations
 including basic arithmetic, advanced functions, and error handling.
 """
 
-import pytest
 import math
-from calculator import Calculator, add, subtract, multiply, divide
+
+import pytest
+
+from calculator import Calculator, add, divide, multiply, subtract
 
 
 class TestCalculator:

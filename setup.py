@@ -2,8 +2,10 @@
 Setup configuration for the Python Calculator package.
 """
 
-from setuptools import setup, find_packages
 import os
+
+from setuptools import find_packages, setup
+
 
 def read_file(filename):
     """Read file contents safely."""
@@ -13,14 +15,17 @@ def read_file(filename):
     except FileNotFoundError:
         return ""
 
+
 def get_requirements():
     """Parse requirements.txt safely."""
     try:
         with open("requirements.txt", "r", encoding="utf-8") as fh:
-            return [line.strip() for line in fh 
-                   if line.strip() and not line.startswith("#")]
+            return [
+                line.strip() for line in fh if line.strip() and not line.startswith("#")
+            ]
     except FileNotFoundError:
         return []
+
 
 long_description = read_file("README.md")
 requirements = get_requirements()

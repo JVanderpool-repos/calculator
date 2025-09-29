@@ -5,10 +5,12 @@ This module contains tests for the command-line interface functionality
 including expression parsing and user interaction scenarios.
 """
 
-import pytest
-from io import StringIO
 import sys
+from io import StringIO
 from unittest.mock import patch
+
+import pytest
+
 from main import CalculatorCLI
 
 
