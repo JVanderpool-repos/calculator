@@ -145,7 +145,9 @@ class TestCalculator:
     def test_cosine_radians(self):
         """Test cosine function with radians."""
         assert self.calc.cosine(0, degrees=False) == pytest.approx(1.0)
-        assert self.calc.cosine(math.pi / 2, degrees=False) == pytest.approx(0.0)
+        assert self.calc.cosine(math.pi / 2, degrees=False) == pytest.approx(
+            0.0
+        )
         assert self.calc.cosine(math.pi, degrees=False) == pytest.approx(-1.0)
 
     def test_tangent(self):
@@ -157,7 +159,9 @@ class TestCalculator:
     def test_tangent_radians(self):
         """Test tangent function with radians."""
         assert self.calc.tangent(0, degrees=False) == pytest.approx(0.0)
-        assert self.calc.tangent(math.pi / 4, degrees=False) == pytest.approx(1.0)
+        assert self.calc.tangent(math.pi / 4, degrees=False) == pytest.approx(
+            1.0
+        )
         assert self.calc.tangent(math.pi, degrees=False) == pytest.approx(0.0)
 
     def test_history_tracking(self):

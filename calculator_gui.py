@@ -81,7 +81,10 @@ class CalculatorGUI:
 
         # History button
         history_btn = ttk.Button(
-            display_frame, text="📜 History", command=self.show_history, width=10
+            display_frame,
+            text="📜 History",
+            command=self.show_history,
+            width=10,
         )
         history_btn.grid(row=1, column=0, sticky=tk.W, padx=5, pady=(0, 5))
 
@@ -163,10 +166,18 @@ class CalculatorGUI:
         for row_idx, row in enumerate(buttons):
             for col_idx, (text, command, style_name) in enumerate(row):
                 btn = ttk.Button(
-                    parent, text=text, command=command, style=style_name, width=8
+                    parent,
+                    text=text,
+                    command=command,
+                    style=style_name,
+                    width=8,
                 )
                 btn.grid(
-                    row=row_idx, column=col_idx, padx=2, pady=2, sticky=(tk.W, tk.E)
+                    row=row_idx,
+                    column=col_idx,
+                    padx=2,
+                    pady=2,
+                    sticky=(tk.W, tk.E),
                 )
 
         # Configure grid weights for responsive design
@@ -254,17 +265,27 @@ class CalculatorGUI:
 
                 # Perform calculation using Calculator class
                 if self.pending_operation == "+":
-                    result = self.calculator.add(self.pending_value, current_value)
+                    result = self.calculator.add(
+                        self.pending_value, current_value
+                    )
                 elif self.pending_operation == "-":
-                    result = self.calculator.subtract(self.pending_value, current_value)
+                    result = self.calculator.subtract(
+                        self.pending_value, current_value
+                    )
                 elif self.pending_operation == "*":
-                    result = self.calculator.multiply(self.pending_value, current_value)
+                    result = self.calculator.multiply(
+                        self.pending_value, current_value
+                    )
                 elif self.pending_operation == "/":
                     if current_value == 0:
                         raise ZeroDivisionError("Cannot divide by zero")
-                    result = self.calculator.divide(self.pending_value, current_value)
+                    result = self.calculator.divide(
+                        self.pending_value, current_value
+                    )
                 elif self.pending_operation == "**":
-                    result = self.calculator.power(self.pending_value, current_value)
+                    result = self.calculator.power(
+                        self.pending_value, current_value
+                    )
                 else:
                     return
 
@@ -421,7 +442,9 @@ class CalculatorGUI:
 
         # Text widget with scrollbar
         text_widget = tk.Text(frame, height=15, width=50, font=("Courier", 10))
-        scrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=text_widget.yview)
+        scrollbar = ttk.Scrollbar(
+            frame, orient=tk.VERTICAL, command=text_widget.yview
+        )
         text_widget.configure(yscrollcommand=scrollbar.set)
 
         # Insert history
@@ -455,7 +478,9 @@ class CalculatorGUI:
         """Clear calculation history."""
         self.calculator.clear_history()
         history_window.destroy()
-        messagebox.showinfo("History Cleared", "Calculation history has been cleared.")
+        messagebox.showinfo(
+            "History Cleared", "Calculation history has been cleared."
+        )
 
     def update_display(self, value):
         """Update the calculator display."""

@@ -11,7 +11,8 @@ from typing import List, Union
 
 class Calculator:
     """
-    A calculator class that provides basic and advanced mathematical operations.
+    A calculator class that provides basic and advanced mathematical
+    operations.
     """
 
     def __init__(self):
@@ -19,7 +20,9 @@ class Calculator:
         self.history: List[str] = []
         self.last_result: Union[int, float] = 0
 
-    def add(self, a: Union[int, float], b: Union[int, float]) -> Union[int, float]:
+    def add(
+        self, a: Union[int, float], b: Union[int, float]
+    ) -> Union[int, float]:
         """
         Add two numbers.
 
@@ -35,7 +38,9 @@ class Calculator:
         self.history.append(f"{a} + {b} = {result}")
         return result
 
-    def subtract(self, a: Union[int, float], b: Union[int, float]) -> Union[int, float]:
+    def subtract(
+        self, a: Union[int, float], b: Union[int, float]
+    ) -> Union[int, float]:
         """
         Subtract b from a.
 
@@ -51,7 +56,9 @@ class Calculator:
         self.history.append(f"{a} - {b} = {result}")
         return result
 
-    def multiply(self, a: Union[int, float], b: Union[int, float]) -> Union[int, float]:
+    def multiply(
+        self, a: Union[int, float], b: Union[int, float]
+    ) -> Union[int, float]:
         """
         Multiply two numbers.
 
@@ -67,7 +74,9 @@ class Calculator:
         self.history.append(f"{a} × {b} = {result}")
         return result
 
-    def divide(self, a: Union[int, float], b: Union[int, float]) -> Union[int, float]:
+    def divide(
+        self, a: Union[int, float], b: Union[int, float]
+    ) -> Union[int, float]:
         """
         Divide a by b.
 
@@ -160,7 +169,9 @@ class Calculator:
             ValueError: If n is negative or not an integer
         """
         if not isinstance(n, int) or n < 0:
-            raise ValueError("Factorial is only defined for non-negative integers")
+            raise ValueError(
+                "Factorial is only defined for non-negative integers"
+            )
 
         result = math.factorial(n)
         self.last_result = result
@@ -186,7 +197,9 @@ class Calculator:
         if number <= 0:
             raise ValueError("Logarithm is only defined for positive numbers")
         if base <= 0 or base == 1:
-            raise ValueError("Logarithm base must be positive and not equal to 1")
+            raise ValueError(
+                "Logarithm base must be positive and not equal to 1"
+            )
 
         if base == math.e:
             result = math.log(number)

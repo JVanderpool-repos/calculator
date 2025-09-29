@@ -11,7 +11,14 @@ from .calculator import Calculator, add, divide, multiply, subtract
 try:
     from .calculator_gui import CalculatorGUI  # noqa: F401
 
-    __all__ = ["Calculator", "CalculatorGUI", "add", "subtract", "multiply", "divide"]
+    __all__ = [
+        "Calculator",
+        "CalculatorGUI",
+        "add",
+        "subtract",
+        "multiply",
+        "divide",
+    ]
 except ImportError:
     # GUI not available (e.g., headless environment)
     __all__ = ["Calculator", "add", "subtract", "multiply", "divide"]

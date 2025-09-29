@@ -147,7 +147,9 @@ class TestCalculatorCLI:
             self.cli.run_interactive()
 
         output = mock_stdout.getvalue()
-        assert "✅ 2.0 + 3.0 = 5.0" in output or "2.0 + 3.0 = 5.0" in str(mock_stdout)
+        assert "✅ 2.0 + 3.0 = 5.0" in output or "2.0 + 3.0 = 5.0" in str(
+            mock_stdout
+        )
 
     def test_single_command_mode(self):
         """Test single command mode."""
@@ -172,7 +174,7 @@ class TestCLIEdgeCases:
         assert "❌ Invalid expression" in result
 
     def test_multiple_operators(self):
-        """Test expressions with multiple operators (supported by eval fallback)."""
+        """Test expressions with multiple operators (eval fallback)."""
         # This should work with eval fallback
         result = self.cli.parse_expression("2 + 3 * 4")
         assert "✅" in result and "14" in result

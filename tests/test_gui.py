@@ -25,14 +25,17 @@ class TestCalculatorGUI(unittest.TestCase):
         self.mock_root.winfo_screenwidth.return_value = 1920
         self.mock_root.winfo_screenheight.return_value = 1080
 
-        with patch("calculator_gui.tk.Tk"), patch("calculator_gui.ttk.Frame"), patch(
-            "calculator_gui.ttk.LabelFrame"
-        ), patch("calculator_gui.ttk.Entry"), patch("calculator_gui.ttk.Button"), patch(
+        with patch("calculator_gui.tk.Tk"), patch(
+            "calculator_gui.ttk.Frame"
+        ), patch("calculator_gui.ttk.LabelFrame"), patch(
+            "calculator_gui.ttk.Entry"
+        ), patch(
+            "calculator_gui.ttk.Button"
+        ), patch(
             "calculator_gui.ttk.Style"
         ), patch(
             "calculator_gui.tk.StringVar"
         ) as mock_stringvar:
-
             # Mock StringVar
             mock_stringvar.return_value = Mock()
 
@@ -270,14 +273,17 @@ class TestCalculatorGUIErrorHandling(unittest.TestCase):
         self.mock_root.winfo_screenwidth.return_value = 1920
         self.mock_root.winfo_screenheight.return_value = 1080
 
-        with patch("calculator_gui.tk.Tk"), patch("calculator_gui.ttk.Frame"), patch(
-            "calculator_gui.ttk.LabelFrame"
-        ), patch("calculator_gui.ttk.Entry"), patch("calculator_gui.ttk.Button"), patch(
+        with patch("calculator_gui.tk.Tk"), patch(
+            "calculator_gui.ttk.Frame"
+        ), patch("calculator_gui.ttk.LabelFrame"), patch(
+            "calculator_gui.ttk.Entry"
+        ), patch(
+            "calculator_gui.ttk.Button"
+        ), patch(
             "calculator_gui.ttk.Style"
         ), patch(
             "calculator_gui.tk.StringVar"
         ) as mock_stringvar:
-
             # Mock StringVar
             mock_stringvar.return_value = Mock()
 
@@ -321,14 +327,17 @@ class TestCalculatorGUIIntegration(unittest.TestCase):
         self.mock_root.winfo_screenwidth.return_value = 1920
         self.mock_root.winfo_screenheight.return_value = 1080
 
-        with patch("calculator_gui.tk.Tk"), patch("calculator_gui.ttk.Frame"), patch(
-            "calculator_gui.ttk.LabelFrame"
-        ), patch("calculator_gui.ttk.Entry"), patch("calculator_gui.ttk.Button"), patch(
+        with patch("calculator_gui.tk.Tk"), patch(
+            "calculator_gui.ttk.Frame"
+        ), patch("calculator_gui.ttk.LabelFrame"), patch(
+            "calculator_gui.ttk.Entry"
+        ), patch(
+            "calculator_gui.ttk.Button"
+        ), patch(
             "calculator_gui.ttk.Style"
         ), patch(
             "calculator_gui.tk.StringVar"
         ) as mock_stringvar:
-
             # Mock StringVar
             mock_stringvar.return_value = Mock()
 

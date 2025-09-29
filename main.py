@@ -150,7 +150,9 @@ class CalculatorCLI:
                 return f"✅ ln({number}) = {result}"
 
             # Handle trigonometric functions
-            trig_match = re.match(r"(sin|cos|tan)\((\d+(?:\.\d+)?)\)", expression)
+            trig_match = re.match(
+                r"(sin|cos|tan)\((\d+(?:\.\d+)?)\)", expression
+            )
             if trig_match:
                 func_name = trig_match.group(1)
                 angle = float(trig_match.group(2))

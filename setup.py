@@ -21,7 +21,9 @@ def get_requirements():
     try:
         with open("requirements.txt", "r", encoding="utf-8") as fh:
             return [
-                line.strip() for line in fh if line.strip() and not line.startswith("#")
+                line.strip()
+                for line in fh
+                if line.strip() and not line.startswith("#")
             ]
     except FileNotFoundError:
         return []
