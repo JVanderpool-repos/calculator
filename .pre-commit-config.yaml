@@ -1,0 +1,51 @@
+# Pre-commit hooks for code quality
+# Install with: pre-commit install
+# Run on all files: pre-commit run --all-files
+# 
+# ⚠️  AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
+# This file is generated from .devcontainer/versions.py
+# To update versions, edit versions.py and run: python .devcontainer/generate-configs.py
+# 
+# Versions are managed centrally in .devcontainer/versions.py
+
+repos:
+  # Code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=127]
+
+  # Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: [--profile=black, --line-length=127]
+
+  # Linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=127, --extend-ignore=E203,W503]
+
+  # Security scanning
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ['-c', '.bandit.yml']
+        exclude: tests/
+
+  # General file cleanup
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
