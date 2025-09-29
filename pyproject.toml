@@ -5,7 +5,7 @@ include = '\.pyi?$'
 extend-exclude = '''
 # A regex preceded by ^/ will apply only to files and directories
 # in the root of the project.
-^/migrations/  # exclude a directory named migrations in the root of the project
+^/\.devcontainer/  # exclude devcontainer directory
 '''
 
 [tool.isort]
