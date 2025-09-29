@@ -1,0 +1,33 @@
+# Development Container Requirements
+# Extended requirements for the development environment
+
+# Base requirements (from requirements.txt)
+setuptools>=65.0.0
+wheel>=0.37.0
+
+# Testing framework
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-xdist>=3.0.0  # Parallel test execution
+
+# Code quality and formatting
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.990
+isort>=5.10.0  # Import sorting
+pylint>=2.15.0  # Additional linting
+
+# Documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# Development tools
+ipython>=8.0.0  # Enhanced Python REPL
+jupyter>=1.0.0  # Notebook support
+pre-commit>=2.20.0  # Git hooks for code quality
+bandit>=1.7.0  # Security linting
+
+# Debugging and profiling
+pdb++>=0.10.0  # Enhanced debugger
+memory-profiler>=0.60.0  # Memory profiling
+line-profiler>=4.0.0  # Line-by-line profiling

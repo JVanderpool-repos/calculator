@@ -47,7 +47,29 @@ A comprehensive Python calculator with both a command-line interface and modular
    cd calculator
    ```
 
-2. **Set up virtual environment:**
+2. **Choose your development environment:**
+
+### Option A: DevContainer (Recommended)
+   
+   **Prerequisites:**
+   - Docker Desktop installed and running
+   - VS Code with the "Dev Containers" extension
+
+   **Setup:**
+   1. Open the project in VS Code
+   2. When prompted, click "Reopen in Container" 
+      - Or use Command Palette: `Dev Containers: Reopen in Container`
+   3. Wait for the container to build (first time may take a few minutes)
+   4. The development environment will be ready with all dependencies pre-installed!
+
+   **Benefits:**
+   - Consistent environment across all machines
+   - No Python version conflicts
+   - Pre-configured VS Code extensions
+   - All development tools included
+
+### Option B: Virtual Environment (Traditional)
+
    ```bash
    # Create virtual environment
    python -m venv .venv
@@ -57,14 +79,12 @@ A comprehensive Python calculator with both a command-line interface and modular
    .venv\Scripts\activate
    # On macOS/Linux:
    source .venv/bin/activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
+   
+   # Install dependencies
    pip install -r requirements.txt
    ```
 
-4. **Run the calculator:**
+3. **Run the calculator:**
    ```bash
    python main.py
    ```

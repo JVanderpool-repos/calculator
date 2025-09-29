@@ -1,0 +1,15 @@
+# DevContainer Docker Compose (optional)
+# This file provides an alternative setup for the development container
+# if you need additional services or more complex networking
+
+version: '3.8'
+
+services:
+  calculator-dev:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    environment:
+      - PYTHONPATH=/workspaces/calculator
+    working_dir: /workspaces/calculator
