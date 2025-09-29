@@ -3,7 +3,7 @@
 # Used by requirements files and pre-commit hooks to ensure consistency
 
 # Code formatting and quality tools
-BLACK_VERSION = "23.12.1"
+BLACK_VERSION = "24.3.0"
 FLAKE8_VERSION = "7.0.0"
 ISORT_VERSION = "5.13.2"
 BANDIT_VERSION = "1.7.5"

@@ -1,6 +1,6 @@
 # Development Container Requirements
 # Extended requirements for the development environment
-# 
+#
 # ⚠️  AUTO-GENERATED FILE - DO NOT EDIT DIRECTLY
 # This file is generated from .devcontainer/versions.py
 # To update versions, edit versions.py and run: python .devcontainer/generate-configs.py
@@ -15,7 +15,7 @@ pytest-cov>=4.0.0
 pytest-xdist>=3.0.0  # Parallel test execution
 
 # Code quality and formatting
-black==23.12.1  # Match pre-commit hook version
+black==24.3.0  # Match pre-commit hook version
 flake8==7.0.0  # Match pre-commit hook version
 mypy>=0.990
 isort==5.13.2  # Match pre-commit hook version
